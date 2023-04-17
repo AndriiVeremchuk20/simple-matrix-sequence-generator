@@ -6,11 +6,11 @@ import "./Navbar.scss"
 export const Navbar = () => {
   return (
     <nav className="nav">
-        <Link to={`${AppRoutes.home}`}>Home</Link>
-        <Link to={AppRoutes.lsr}>LSR</Link>
-        <Link to={AppRoutes.msr}>MSR</Link>
-        <Link to={AppRoutes.aboutUs}>About us</Link>
-        <Link to={AppRoutes.support}>Support</Link>
+        <Link to={AppRoutes.home} className="nav-item">Home</Link>
+        <Link to={AppRoutes.lsr} className="nav-item">LSR</Link>
+        <Link to={AppRoutes.msr} className="nav-item">MSR</Link>
+        <Link to={AppRoutes.aboutUs} className="nav-item">About us</Link>
+        <Link to={AppRoutes.support} className="nav-item">Support</Link>
     </nav>
   );
 };

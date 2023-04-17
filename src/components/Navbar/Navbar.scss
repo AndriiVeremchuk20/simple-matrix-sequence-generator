@@ -1,0 +1,18 @@
+.nav{
+    width: 100%;
+    display: flex;
+    justify-content: left;
+    margin: 0;
+
+    & .nav-item{
+        padding: 3px 10px;
+        font-size: 20px;
+        font-weight: bold;
+        color: white;   
+        
+        &:hover{
+            font-size: 18px;
+            padding: 0px 11px;
+        }
+    }
+}

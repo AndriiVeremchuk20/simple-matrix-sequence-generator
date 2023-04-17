@@ -6,15 +6,15 @@ import { Navbar } from "../../components/Navbar/Navbar";
 
 export const Header = () => {
   return (
-    <div>
-      <header className="header">
+    <header className="header">
+      <div className="header-main">
         <div className="title">LSR-MSR calculator</div>
         <div className="toolbar">
           <ChangeTheme />
           <ChangeLanguage />
         </div>
-      </header>
+      </div>
       <Navbar />
-    </div>
+    </header>
   );
 };
