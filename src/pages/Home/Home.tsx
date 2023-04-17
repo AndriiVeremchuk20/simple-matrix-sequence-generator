@@ -3,7 +3,7 @@ import "./Home.scss";
 
 const Home = () => {
   return (
-    <div className="home">
+    <div className="container">
       <div className=" content">
         <div>
           Linear Shift Registers (LSRs) are a type of digital circuit that is

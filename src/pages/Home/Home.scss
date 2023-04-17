@@ -1,14 +1,6 @@
 @import "../../styless/variables";
 
-.home{
-    min-height: 100vh;
-    max-height: fit-content;
-    display: flex;
-    justify-content: center;
-
-    & .content{
-        position: absolute;
-        top: 10vh;
+ .content{
         width: 80vw;
         min-height: 80vh;
         max-height: max-content;
@@ -38,4 +30,3 @@
 
     }
     
-}

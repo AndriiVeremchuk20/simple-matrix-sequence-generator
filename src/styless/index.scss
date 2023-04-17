@@ -2,16 +2,24 @@
 @import "./theme";
 
 *,
-html{
-    padding: 0;
-    margin: 0;
+html {
+  padding: 0;
+  margin: 0;
 }
 
 body {
-    font-size: $app-font-size;   
-    min-height: 100vh;
-    max-height: max-content;
-    background-image: $bg-image-light;
-    background-attachment: fixed; 
+  font-size: $app-font-size;
+  min-height: 100vh;
+  max-height: max-content;
+  background-image: $bg-image-light;
+  background-attachment: fixed;
 }
 
+.container {
+  width: 100%;
+  min-height: 100vh;
+  position: absolute;
+  top: 12vh;
+  display: flex;
+  justify-content: center;
+}
