@@ -1,0 +1,16 @@
+@import "../../styless/variables";
+
+.home{
+    width: 100vw;
+    min-height: 100vh;
+    max-height: fit-content;
+    background-image: url('../../../public/img/bg.jpg');
+    display: flex;
+    justify-content: center;
+
+    & .content{
+        width: 80vw;
+        background: $secondary-color;
+    }
+    
+}

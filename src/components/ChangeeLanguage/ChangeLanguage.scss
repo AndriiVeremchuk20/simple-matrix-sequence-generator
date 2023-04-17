@@ -1,0 +1,10 @@
+.change-language{
+    background: none;
+    outline: none;
+    border: none;
+    font-size: 30px;
+
+    &>option{
+        font-size: 30px;
+    }
+}

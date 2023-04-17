@@ -1,0 +1,9 @@
+@import "../../styless/variables";
+
+.footer{
+    background-color: $primary-color;
+    display: flex;
+    position: fixed;
+    bottom: 0px;
+    width: 100vw;
+}
