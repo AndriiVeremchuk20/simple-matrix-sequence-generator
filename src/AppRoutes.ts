@@ -1,4 +1,4 @@
-const AppRoutes = {
+export const AppRoutes = {
   home: "/",
   msr: "/msr",
   lsr: "/lsr",
@@ -6,5 +6,3 @@ const AppRoutes = {
   support: "/support",
   noPage: "*",
 };
-
-export default AppRoutes;

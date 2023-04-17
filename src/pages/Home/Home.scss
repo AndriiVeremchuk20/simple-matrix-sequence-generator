@@ -1,16 +1,41 @@
 @import "../../styless/variables";
 
 .home{
-    width: 100vw;
     min-height: 100vh;
     max-height: fit-content;
-    background-image: url('../../../public/img/bg.jpg');
     display: flex;
     justify-content: center;
 
     & .content{
+        position: absolute;
+        top: 10vh;
         width: 80vw;
+        min-height: 80vh;
+        max-height: max-content;
+        padding: 10pt;
+        margin: 10px;
         background: $secondary-color;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        & .img{
+            width: 500px;
+            height: auto;
+            margin-top: 10px;
+        }
+
+        & .img-title{
+            text-align: center;
+            margin:  0 0 10px 0;
+        }
+
+        &>*{
+            line-height: 1.5;
+            text-align: justify;
+            font-size: 18px;
+        }
+
     }
     
 }

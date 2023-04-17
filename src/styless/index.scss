@@ -1,9 +1,17 @@
 @import "./variables";
+@import "./theme";
 
 *,
-html,
-body {
+html{
     padding: 0;
     margin: 0;
-    font-size: $app-font-size;
 }
+
+body {
+    font-size: $app-font-size;   
+    min-height: 100vh;
+    max-height: max-content;
+    background-image: $bg-image-light;
+    background-attachment: fixed; 
+}
+

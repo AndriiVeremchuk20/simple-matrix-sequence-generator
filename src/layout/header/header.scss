@@ -8,20 +8,24 @@
   justify-content: center;
   align-items: center;
   background: $primary-color;
-  z-index: 10;
+  z-index: 1;
+
   & .title {
     cursor: pointer;
     font-size: 50px;
     font-weight: bold;
+    background: inherit;
   }
 
   & .toolbar {
     display: flex;
     position: absolute;
     right: 10px;
+    background: $primary-color;
 
     & > * {
       margin: 0 10px;
+      background: inherit;
     }
   }
 }
