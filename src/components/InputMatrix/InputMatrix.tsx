@@ -1,22 +1,32 @@
-import React, { useEffect, useState } from 'react';
+import math from "mathjs";
+import React, { useEffect, useState } from "react";
 
 type MatrixFormProps = {
   rows: number;
   cols: number;
+  onChange: (matrix: number[][]) => void;
 };
 
-const InputMatrix = ({ rows, cols }: MatrixFormProps) => {
-  const [matrix, setMatrix] = useState<number[][]>([...Array(rows)].map(() => Array(cols).fill(0)));
+const InputMatrix = ({ rows, cols, onChange }: MatrixFormProps) => {
+  const [matrix, setMatrix] = useState<number[][]>(
+    [...Array(rows)].map(() => Array(cols).fill(0))
+  );
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>, rowIndex: number, colIndex: number) => {
+  const handleInputChange = (
+    event: React.ChangeEvent<HTMLInputElement>,
+    rowIndex: number,
+    colIndex: number
+  ) => {
     const updatedMatrix = [...matrix];
-    updatedMatrix[rowIndex][colIndex] = parseInt(event.target.value);
+    updatedMatrix[rowIndex][colIndex] = event.target.value?1:0;
     setMatrix(updatedMatrix);
+    onChange(matrix);
   };
 
-  useEffect(()=>{
+  useEffect(() => {
     setMatrix([...Array(rows)].map(() => Array(cols).fill(0)));
-  },[rows, cols])
+    onChange(matrix);
+  }, [rows, cols]);
 
   return (
     <div>
@@ -25,9 +35,7 @@ const InputMatrix = ({ rows, cols }: MatrixFormProps) => {
           {row.map((cell, colIndex) => (
             <input
               key={`col-${colIndex}`}
-              type="number"
-              min="0"
-              max="1"
+              type="checkbox"
               value={cell}
               onChange={(event) => handleInputChange(event, rowIndex, colIndex)}
             />
