@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Lsr.scss";
 import { useForm } from "react-hook-form";
 
@@ -6,6 +6,12 @@ interface lsr {
   n: number;
   c: string;
   y: string;
+}
+
+interface lsrRes {
+  arr: Array<number>;
+  bin: string;
+  T: number;
 }
 
 function GetResult({ n, c, y }: lsr) {
@@ -61,7 +67,7 @@ function GetResult({ n, c, y }: lsr) {
     if (j >= Math.pow(2, N)) {
       break;
     }
-  } while (curr != base);
+  } while (curr !== base);
 
   return {
     arr: arr,
@@ -71,12 +77,20 @@ function GetResult({ n, c, y }: lsr) {
 }
 
 export const Lsr = () => {
+  const [result, setResult] = useState<lsrRes | null>(null);
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<lsr>();
-  const onSubmit = handleSubmit((data) => console.log(GetResult(data)));
+  const onSubmit = handleSubmit((data) => {
+    const res = GetResult(data);
+    console.log(res);
+    if (res) {
+      setResult(res);
+    }
+  });
 
   return (
     <div className="container">
@@ -123,7 +137,15 @@ export const Lsr = () => {
             <button type="submit">Calc</button>
           </div>
         </form>
-        <div>result</div>
+        <div>
+          {result ? (
+            <>
+              <div>T: {result.T}</div>
+              <div>Arr: {result.arr}</div>
+              <div>Bin: {result.bin}</div>
+            </>
+          ) : null}
+        </div>
       </div>
     </div>
   );
