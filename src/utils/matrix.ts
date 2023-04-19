@@ -19,6 +19,7 @@ export const onModulate = (
   M: number,
   Matrix: Array<Array<number>>
 ) => {
+    console.log(NCa, MCb, N, M, Matrix);
   let Ca = NCa;
   let Cb = MCb;
   let A = GetCoefficientMatrix(Ca);
@@ -44,5 +45,5 @@ export const onModulate = (
     allStates.push(curr);
     k++;
   } while (curr !== seed && k !== T);
-  return allStates;
+  return {allStates: allStates, T: T};
 };

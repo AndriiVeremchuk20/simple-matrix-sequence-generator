@@ -1,4 +1,3 @@
-import math from "mathjs";
 import React, { useEffect, useState } from "react";
 
 type MatrixFormProps = {
@@ -18,7 +17,8 @@ const InputMatrix = ({ rows, cols, onChange }: MatrixFormProps) => {
     colIndex: number
   ) => {
     const updatedMatrix = [...matrix];
-    updatedMatrix[rowIndex][colIndex] = event.target.value?1:0;
+    console.log(event.target.value);
+    updatedMatrix[rowIndex][colIndex] = event.target.value === "1" ? 0 : 1;
     setMatrix(updatedMatrix);
     onChange(matrix);
   };
@@ -29,7 +29,9 @@ const InputMatrix = ({ rows, cols, onChange }: MatrixFormProps) => {
   }, [rows, cols]);
 
   return (
-    <div>
+    <div><>
+      {console.log(matrix)}
+    </>
       {matrix.map((row, rowIndex) => (
         <div key={`row-${rowIndex}`}>
           {row.map((cell, colIndex) => (

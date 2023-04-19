@@ -2,6 +2,9 @@ import React, { ChangeEvent, useCallback, useState } from "react";
 import "./Msr.scss";
 import InputMatrix from "../../components/InputMatrix/InputMatrix";
 import { onModulate } from "../../utils/matrix";
+import { useForm } from "react-hook-form";
+import { row } from "mathjs";
+import PrintMatrix from "../../components/PrintMatrix/PrintMatrix";
 
 type MatrixParams = {
   rows: number;
@@ -13,16 +16,19 @@ type FormParams = {
   mcb: string;
 };
 
+type Result = {
+  T: number;
+  allStates: Array<any>;
+}
 
 export const Msr = () => {
   const [matrixParams, setMatrixParams] = useState<MatrixParams>({
     cols: 2,
     rows: 2,
   });
-
-  console.log(onModulate("1101","11001", 3,4, [[0,1,0,1], [0,1,1,1],[0,0,0,1]]));
-
   const [matrix, setMatrix] = useState<number[][]>([]);
+  const [result, setResult] = useState<Result|null>(null);
+  const { register, handleSubmit } = useForm<FormParams>();
 
   const onRowsChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
@@ -34,33 +40,40 @@ export const Msr = () => {
     setMatrixParams((prev) => ({ ...prev, cols: parseInt(value) }));
   }, []);
 
+  const onSubmit = handleSubmit((data) => {
+    try{
+      console.log(onModulate(data.nca, data.mcb, matrixParams.rows, matrixParams.cols, matrix));
+      setResult(onModulate(data.nca, data.mcb, matrixParams.rows, matrixParams.cols, matrix));
+    }catch(e){
+      alert("hmm..");
+    }
+
+  });
+
   return (
     <div>
       <div className="container">
         <div className="lsr">
           <div>instruction video or gif</div>
-          <form>
-            <div>
+          <form className="form" onSubmit={onSubmit}>
+            <div className="form-header">MSR-calculator</div>
+            <div className="form-item">
               <label htmlFor="nca">NCa:</label>
               <input
-                type="number"
+                type="text"
                 id="nca"
-                min={2}
-                max={10}
-                onChange={onRowsChange}
+                {...register("nca")}
               />
             </div>
-            <div>
+            <div className="form-item">
               <label htmlFor="mcb">MCb:</label>
               <input
-                type="number"
+                type="text"
                 id="mcb"
-                min={2}
-                max={10}
-                onChange={onRowsChange}
+                {...register("mcb")}
               />
             </div>
-            <div>
+            <div className="form-item">
               <div>
                 <label htmlFor="rows">Rows(N):</label>
                 <input
@@ -89,7 +102,23 @@ export const Msr = () => {
                 onChange={setMatrix}
               />
             </div>
+            <div className="btn-group">
+              <button type="reset">Reset</button>
+              <button type="submit">Calc</button>
+            </div>
           </form>
+          <div className="res">
+            {
+              result?
+              <div>
+                {result.T}
+                {
+                  result.allStates.map(steteMatrix => <PrintMatrix matrix={steteMatrix}/>)
+                }
+              </div>
+              :null
+            }
+          </div>
         </div>
       </div>
     </div>
