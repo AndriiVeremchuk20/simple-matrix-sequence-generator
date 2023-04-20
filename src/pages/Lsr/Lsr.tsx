@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./Lsr.scss";
 import { useForm } from "react-hook-form";
+import { PolinomTable } from "../../components/PolinomTable/PolinomTable";
 
 interface lsr {
   n: number;
@@ -81,47 +82,50 @@ export const Lsr = () => {
     <div className="container">
       <div className="lsr">
         <div>instruction video or gif</div>
-        <form onSubmit={onSubmit} className="form">
-          <div className="form-header">LSR-calculator</div>
-          <div className="form-item">
-            <label htmlFor="n">*N: </label>
-            <input
-              id="n"
-              type="number"
-              placeholder="0-16"
-              required
-              min={0}
-              max={16}
-              {...register("n")}
-            />
-          </div>
-          <div className="form-item">
-            <label htmlFor="c">*C: </label>
-            <input
-              id="c"
-              type="text"
-              placeholder="111101"
-              required
-              pattern="[0-1]{2,16}"
-              {...register("c")}
-            />
-          </div>
-          <div className="form-item">
-            <label htmlFor="y">*Y: </label>
-            <input
-              id="y"
-              type="text"
-              placeholder="1010"
-              required
-              pattern="[0-1]{2,16}"
-              {...register("y")}
-            />
-          </div>
-          <div className="btn-group">
-            <button type="reset">Reset</button>
-            <button type="submit">Calc</button>
-          </div>
-        </form>
+        <div className="form-data">
+          <form onSubmit={onSubmit} className="form">
+            <div className="form-header">LSR-calculator</div>
+            <div className="form-item">
+              <label htmlFor="n">*N: </label>
+              <input
+                id="n"
+                type="number"
+                placeholder="0-16"
+                required
+                min={0}
+                max={16}
+                {...register("n")}
+              />
+            </div>
+            <div className="form-item">
+              <label htmlFor="c">*C: </label>
+              <input
+                id="c"
+                type="text"
+                placeholder="111101"
+                required
+                pattern="[0-1]{2,16}"
+                {...register("c")}
+              />
+            </div>
+            <div className="form-item">
+              <label htmlFor="y">*Y: </label>
+              <input
+                id="y"
+                type="text"
+                placeholder="1010"
+                required
+                pattern="[0-1]{2,16}"
+                {...register("y")}
+              />
+            </div>
+            <div className="btn-group">
+              <button type="reset">Reset</button>
+              <button type="submit">Calc</button>
+            </div>
+          </form>
+          <PolinomTable />
+        </div>
         <div>
           {result ? (
             <>
