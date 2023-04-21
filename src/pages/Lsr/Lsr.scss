@@ -1,11 +1,42 @@
 @import "../../styless/variables";
 
 .lsr{
-    width: 70%;
+    width: 70vw;
     padding: 10px;
     background: $secondary-color;
     
     & .form-data{
         display: flex;
+    }
+
+    & .results{
+        width: fit-content;
+        height: auto;
+        margin: 10px 0;
+        padding: 10px 10px;
+        font-size: 19px;
+        hyphens: manual;
+        background: $results-color;
+
+        & .result-item{
+            display: flex;
+            margin: 4px;
+
+            & .result-label{
+                margin: 0 3px;
+            }
+
+            & .result-arr{
+                display: flex;
+
+                & .arr-item{
+                    margin: 0 2px;
+                }
+
+                & .marked{
+                    background:green;
+                }
+            }
+        }
     }
 }

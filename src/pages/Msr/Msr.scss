@@ -1,0 +1,15 @@
+@import "../../styless/variables";
+
+.msr{
+    width: 70vw;
+    padding: 10px;
+    background: $secondary-color;
+
+    & .msr-result{
+        background: $results-color;
+
+        & .res-item{
+            display: flex;
+        }
+    }
+} 

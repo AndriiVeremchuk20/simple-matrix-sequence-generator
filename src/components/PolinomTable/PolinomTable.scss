@@ -1,0 +1,16 @@
+.polinom-table{
+    padding: 10px;
+
+    & .image{
+    width: 600px;
+    height: auto;
+    }
+    & .show-hide{
+        font-size: 18px;
+    }
+
+    & .title{
+        text-align: center;
+        font-size: 18px;
+    }
+}

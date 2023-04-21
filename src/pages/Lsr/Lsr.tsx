@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import "./Lsr.scss";
 import { useForm } from "react-hook-form";
 import { PolinomTable } from "../../components/PolinomTable/PolinomTable";
@@ -78,12 +78,16 @@ export const Lsr = () => {
     }
   });
 
+  const onReset = useCallback(() => {
+    setResult(null);
+  }, []);
+
   return (
     <div className="container">
       <div className="lsr">
         <div>instruction video or gif</div>
         <div className="form-data">
-          <form onSubmit={onSubmit} className="form">
+          <form onSubmit={onSubmit} onReset={onReset} className="form">
             <div className="form-header">LSR-calculator</div>
             <div className="form-item">
               <label htmlFor="n">*N: </label>
@@ -124,15 +128,42 @@ export const Lsr = () => {
               <button type="submit">Calc</button>
             </div>
           </form>
-          <PolinomTable />
+          <div className="table">
+            <PolinomTable />
+          </div>
         </div>
         <div>
           {result ? (
-            <>
-              <div>T: {result.T}</div>
-              <div>Arr: {result.arr}</div>
-              <div>Bin: {result.bin}</div>
-            </>
+            <div className="results">
+              <h2>Results:</h2>
+              <div className="result-item">
+                <div className="result-label">T:</div>
+                <div>{result.T}</div>
+              </div>
+              <div className="result-item">
+                <div className="result-label">Arr:</div>
+                <div className="result-arr">
+                  {result.arr.map((item, index) => (
+                    <div key={index} className="arr-item">
+                      {item}
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div className="result-item">
+                <div className="result-label">Bin:</div>
+                <div className="result-arr">
+                  {result.bin.split("").map((bit, index) => (
+                    <div
+                      key={index}
+                      className={`arr-item ${bit === "1" ? "marked" : ""}`}
+                    >
+                      {bit}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
           ) : null}
         </div>
       </div>
