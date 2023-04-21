@@ -65,13 +65,18 @@ export const Msr = () => {
     }
   });
 
+  const onReset = useCallback(() => {
+    setMatrixParams({ cols: 2, rows: 2 });
+    setResult(null);
+  }, []);
+
   return (
     <div>
       <div className="container">
         <div className="msr">
           <div>instruction video or gif</div>
           <div className="form-content">
-            <form className="form" onSubmit={onSubmit}>
+            <form className="form" onSubmit={onSubmit} onReset={onReset}>
               <div className="form-header">MSR-calculator</div>
               <div className="form-item">
                 <label htmlFor="nca">NCa:</label>

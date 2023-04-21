@@ -1,0 +1,12 @@
+.input-matrix{
+    padding: 4px;
+    border: solid;
+    margin: 10px;
+
+    & .matrix-cell{
+        width: 15px;
+        height: 15px;
+        margin: 5px;
+    }
+
+}

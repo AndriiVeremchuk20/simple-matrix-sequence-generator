@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import "./InputMatrix.scss";
 
 type MatrixFormProps = {
   rows: number;
@@ -29,13 +30,12 @@ const InputMatrix = ({ rows, cols, onChange }: MatrixFormProps) => {
   }, [rows, cols]);
 
   return (
-    <div><>
-      {console.log(matrix)}
-    </>
+    <div className="input-matrix">
       {matrix.map((row, rowIndex) => (
         <div key={`row-${rowIndex}`}>
           {row.map((cell, colIndex) => (
             <input
+              className="matrix-cell"
               key={`col-${colIndex}`}
               type="checkbox"
               checked={!!cell}
