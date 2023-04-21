@@ -1,15 +1,34 @@
 @import "../../styless/variables";
 
-.msr{
-    width: 70vw;
-    padding: 10px;
-    background: $secondary-color;
+.msr {
+  width: 70vw;
+  padding: 10px;
+  background: $secondary-color;
 
-    & .msr-result{
-        background: $results-color;
+  & .form-content{
+    display: flex;
+    justify-content: space-around;
+  }
 
-        & .res-item{
-            display: flex;
-        }
+  & .msr-result {
+    background: $results-color;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+
+    & .res-item {
+      display: flex;
+      margin: 10px 0;
     }
-} 
+
+    & .res-title{
+        font-weight: bold;       
+    }
+
+    & .res-matrix {
+        display: flex;
+        flex-direction: column;
+    }
+  }
+}

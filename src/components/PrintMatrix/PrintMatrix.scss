@@ -1,4 +1,10 @@
-.matrix{
-    
-    
+.matrix {
+  margin: 0 0 10px 10px;
+
+  & .matrix-item {
+    padding: 5px;
+  }
+  & .mark-cell {
+  background: green;
+    }
 }

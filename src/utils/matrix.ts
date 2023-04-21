@@ -44,6 +44,6 @@ export const onModulate = (
     }
     allStates.push(curr);
     k++;
-  } while (curr !== seed && k !== T);
-  return {allStates: allStates, T: T};
+  } while (curr !== seed && k !== T-1);
+  return {allStates: allStates, T: T-1};
 };

@@ -18,7 +18,7 @@ const InputMatrix = ({ rows, cols, onChange }: MatrixFormProps) => {
   ) => {
     const updatedMatrix = [...matrix];
     console.log(event.target.value);
-    updatedMatrix[rowIndex][colIndex] = event.target.value === "1" ? 0 : 1;
+    updatedMatrix[rowIndex][colIndex] = event.target.checked? 1 : 0;
     setMatrix(updatedMatrix);
     onChange(matrix);
   };
@@ -38,7 +38,7 @@ const InputMatrix = ({ rows, cols, onChange }: MatrixFormProps) => {
             <input
               key={`col-${colIndex}`}
               type="checkbox"
-              value={cell}
+              checked={!!cell}
               onChange={(event) => handleInputChange(event, rowIndex, colIndex)}
             />
           ))}

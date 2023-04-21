@@ -12,7 +12,7 @@ const PrintMatrix: React.FC<PrintMatrixProps> = ({ matrix }) => {
         {matrix.map((row, rowIndex) => (
           <tr key={rowIndex}>
             {row.map((cell, cellIndex) => (
-              <td className={`${cell===1?"matrix-item mark-cell":""}`} key={cellIndex}>{cell}</td>
+              <td className={`matrix-item ${cell===1?"mark-cell":""}`} key={cellIndex}>{cell}</td>
             ))}
           </tr>
         ))}
