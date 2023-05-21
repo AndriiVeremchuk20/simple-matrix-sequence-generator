@@ -1,5 +1,4 @@
 import React from 'react';
-import "./ChangeLanguage.scss";
 
 export const ChangeLanguage = () => {
   return (

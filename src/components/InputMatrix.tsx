@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import "./InputMatrix.scss";
 
 type MatrixFormProps = {
   rows: number;

@@ -1,5 +1,4 @@
 import React, { useCallback, useState } from "react";
-import "./PolinomTable.scss";
 
 export const PolinomTable = () => {
   const [show, setShow] = useState<boolean>(false);

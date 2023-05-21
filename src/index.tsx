@@ -1,16 +1,13 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
-import App from "./App";
-import "./styless/index.scss";
-import { BrowserRouter } from "react-router-dom";
+import { App } from "./App";
+import "./styless/index.css";
 
 const container = document.getElementById("root")!;
 const root = createRoot(container);
 
 root.render(
   <React.Fragment>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <App />
   </React.Fragment>
 );

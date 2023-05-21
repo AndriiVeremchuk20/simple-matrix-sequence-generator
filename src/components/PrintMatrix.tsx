@@ -1,5 +1,4 @@
 import React from "react";
-import "./PrintMatrix.scss";
 
 type PrintMatrixProps = {
   matrix: number[][];
