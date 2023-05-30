@@ -2,7 +2,7 @@ import React from 'react';
 
 export const ChangeLanguage = () => {
   return (
-    <select className='change-language' title='Change Language'>
+    <select className='bg-inherit text-2xl' title='Change Language'>
         <option value="">🇺🇸</option>
         <option value="">🇺🇦</option>
     </select>

@@ -29,12 +29,12 @@ const InputMatrix = ({ rows, cols, onChange }: MatrixFormProps) => {
   }, [rows, cols]);
 
   return (
-    <div className="input-matrix">
+    <div className="border-2 border-black w-fit p-2">
       {matrix.map((row, rowIndex) => (
         <div key={`row-${rowIndex}`}>
           {row.map((cell, colIndex) => (
             <input
-              className="matrix-cell"
+              className="m-1"
               key={`col-${colIndex}`}
               type="checkbox"
               checked={!!cell}

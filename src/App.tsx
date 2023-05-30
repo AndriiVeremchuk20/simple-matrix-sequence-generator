@@ -61,7 +61,7 @@ export const App = () => {
         )
       );
     } catch (e) {
-      alert("hmm..");
+      alert("error");
     }
   });
 
@@ -72,23 +72,36 @@ export const App = () => {
 
   return (
     <div>
-      <Header/>
-      <div className="container">
-        <div className="msr">
-          <div>instruction video or gif</div>
-          <div className="form-content">
-            <form className="form" onSubmit={onSubmit} onReset={onReset}>
-              <div className="form-header">MSR-calculator</div>
-              <div className="form-item">
-                <label htmlFor="nca">NCa:</label>
-                <input type="text" id="nca" {...register("nca")} />
+      <Header />
+      <div className="bg-blue-200 min-h-screen max-h-fit flex justify-center">
+        <div className="bg-neutral-300 w-5/6 pt-10">
+          {/* <div>instruction video or gif</div> */}
+          <div className="w-full flex flex-col items-center">
+            <form
+              className="form w-fit p-4 bg-slate-500 bg-opacity-20 flex flex-col items-center gap-3"
+              onSubmit={onSubmit}
+              onReset={onReset}
+            >
+              <div className="my-2 border-b">
+                <label htmlFor="">NCa:</label>
+                <input
+                  type="text"
+                  className="bg-inherit outline-none"
+                  id="nca"
+                  {...register("nca")}
+                />
               </div>
-              <div className="form-item">
+              <div className="my-2 border-b">
                 <label htmlFor="mcb">MCb:</label>
-                <input type="text" id="mcb" {...register("mcb")} />
+                <input
+                  type="text"
+                  className="bg-inherit"
+                  id="mcb"
+                  {...register("mcb")}
+                />
               </div>
-              <div className="form-item">
-                <div>
+              <div className="flex justify-between">
+                <div className="border-b">
                   <label htmlFor="rows">Rows(N):</label>
                   <input
                     type="number"
@@ -96,9 +109,10 @@ export const App = () => {
                     min={2}
                     max={10}
                     onChange={onRowsChange}
+                    className="bg-inherit w-16"
                   />
                 </div>
-                <div>
+                <div className="border-b">
                   <label htmlFor="cols">Cols(M):</label>
                   <input
                     type="number"
@@ -106,9 +120,11 @@ export const App = () => {
                     min={2}
                     max={10}
                     onChange={onColsChange}
+                    className="bg-inherit w-16"
                   />
                 </div>
               </div>
+
               <div>
                 <InputMatrix
                   cols={matrixParams.cols}
