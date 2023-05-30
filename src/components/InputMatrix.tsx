@@ -7,9 +7,7 @@ type MatrixFormProps = {
 };
 
 const InputMatrix = ({ rows, cols, onChange }: MatrixFormProps) => {
-  const [matrix, setMatrix] = useState<number[][]>(
-    [...Array(rows)].map(() => Array(cols).fill(0))
-  );
+  const [matrix, setMatrix] = useState<number[][]>([[]]);
 
   const handleInputChange = (
     event: React.ChangeEvent<HTMLInputElement>,
@@ -18,7 +16,7 @@ const InputMatrix = ({ rows, cols, onChange }: MatrixFormProps) => {
   ) => {
     const updatedMatrix = [...matrix];
     console.log(event.target.value);
-    updatedMatrix[rowIndex][colIndex] = event.target.checked? 1 : 0;
+    updatedMatrix[rowIndex][colIndex] = event.target.checked ? 1 : 0;
     setMatrix(updatedMatrix);
     onChange(matrix);
   };
@@ -35,7 +33,7 @@ const InputMatrix = ({ rows, cols, onChange }: MatrixFormProps) => {
           {row.map((cell, colIndex) => (
             <input
               className="m-1"
-              key={`col-${colIndex}`}
+              key={colIndex}
               type="checkbox"
               checked={!!cell}
               onChange={(event) => handleInputChange(event, rowIndex, colIndex)}

@@ -5,6 +5,7 @@ import InputMatrix from "./components/InputMatrix";
 import { PolinomTable } from "./components/PolinomTable";
 import PrintMatrix from "./components/PrintMatrix";
 import { Header } from "./layout/Header";
+import { ShowSteps } from "./components/ShowSteps";
 
 type MatrixParams = {
   rows: number;
@@ -19,12 +20,14 @@ type FormParams = {
 type Result = {
   T: number;
   allStates: Array<any>;
+  A: any;
+  B: any;
 };
 
 export const App = () => {
   const [matrixParams, setMatrixParams] = useState<MatrixParams>({
-    cols: 2,
-    rows: 2,
+    cols: 0,
+    rows: 0,
   });
   const [matrix, setMatrix] = useState<number[][]>([]);
   const [result, setResult] = useState<Result | null>(null);
@@ -32,12 +35,12 @@ export const App = () => {
 
   const onRowsChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
-    setMatrixParams((prev) => ({ ...prev, rows: parseInt(value) }));
+    if (value) setMatrixParams((prev) => ({ ...prev, rows: parseInt(value) }));
   }, []);
 
   const onColsChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
-    setMatrixParams((prev) => ({ ...prev, cols: parseInt(value) }));
+    if (value) setMatrixParams((prev) => ({ ...prev, cols: parseInt(value) }));
   }, []);
 
   const onSubmit = handleSubmit((data) => {
@@ -61,7 +64,7 @@ export const App = () => {
         )
       );
     } catch (e) {
-      alert("error");
+      alert("error (check fields)");
     }
   });
 
@@ -73,87 +76,114 @@ export const App = () => {
   return (
     <div>
       <Header />
-      <div className="bg-blue-200 min-h-screen max-h-fit flex justify-center">
-        <div className="bg-neutral-300 w-5/6 pt-10">
-          {/* <div>instruction video or gif</div> */}
+      <div className=" bg-gradient-to-r from-cyan-700 to-blue-500 dark:to-blue-900 min-h-screen max-h-fit flex justify-center">
+        <div className="pt-[100px] bg-neutral-300 dark:bg-neutral-900 dark:bg-opacity-70 bg-opacity-70 w-5/6 dark:text-white">
           <div className="w-full flex flex-col items-center">
-            <form
-              className="form w-fit p-4 bg-slate-500 bg-opacity-20 flex flex-col items-center gap-3"
-              onSubmit={onSubmit}
-              onReset={onReset}
-            >
-              <div className="my-2 border-b">
-                <label htmlFor="">NCa:</label>
-                <input
-                  type="text"
-                  className="bg-inherit outline-none"
-                  id="nca"
-                  {...register("nca")}
-                />
-              </div>
-              <div className="my-2 border-b">
-                <label htmlFor="mcb">MCb:</label>
-                <input
-                  type="text"
-                  className="bg-inherit"
-                  id="mcb"
-                  {...register("mcb")}
-                />
-              </div>
-              <div className="flex justify-between">
-                <div className="border-b">
-                  <label htmlFor="rows">Rows(N):</label>
+            <div className="w-full flex justify-around">
+              <PolinomTable />
+              <form
+                className="form h-fit w-fit p-4 bg-slate-500 bg-opacity-20 flex flex-col items-center gap-3 "
+                onSubmit={onSubmit}
+                onReset={onReset}
+              >
+                <h3 className="font-bold ">Matrix Generator</h3>
+                <div className="my-2 border-b">
+                  <label htmlFor="nca">NCa:</label>
                   <input
-                    type="number"
-                    id="rows"
-                    min={2}
-                    max={10}
-                    onChange={onRowsChange}
-                    className="bg-inherit w-16"
+                    type="text"
+                    className="bg-inherit outline-none border-none ml-4"
+                    id="nca"
+                    {...register("nca")}
                   />
                 </div>
-                <div className="border-b">
-                  <label htmlFor="cols">Cols(M):</label>
+                <div className="my-2 border-b">
+                  <label htmlFor="mcb">MCb:</label>
                   <input
-                    type="number"
-                    id="cols"
-                    min={2}
-                    max={10}
-                    onChange={onColsChange}
-                    className="bg-inherit w-16"
+                    type="text"
+                    className="bg-inherit outline-none border-none ml-4"
+                    id="mcb"
+                    {...register("mcb")}
                   />
                 </div>
-              </div>
+                <div className="flex justify-between w-full">
+                  <div className="border-b">
+                    <label htmlFor="rows">Rows(N):</label>
+                    <input
+                      type="number"
+                      id="rows"
+                      min={0}
+                      max={10}
+                      onChange={onRowsChange}
+                      className="ml-3 bg-inherit w-16"
+                    />
+                  </div>
+                  <div className="border-b">
+                    <label htmlFor="cols">Cols(M):</label>
+                    <input
+                      type="number"
+                      id="cols"
+                      min={0}
+                      max={10}
+                      onChange={onColsChange}
+                      className="ml-3 bg-inherit w-16"
+                    />
+                  </div>
+                </div>
 
-              <div>
-                <InputMatrix
-                  cols={matrixParams.cols}
-                  rows={matrixParams.rows}
-                  onChange={setMatrix}
-                />
-              </div>
-              <div className="btn-group">
-                <button type="reset">Reset</button>
-                <button type="submit">Calc</button>
-              </div>
-            </form>
-            <PolinomTable />
+                <div>
+                  <InputMatrix
+                    cols={matrixParams.cols}
+                    rows={matrixParams.rows}
+                    onChange={setMatrix}
+                  />
+                </div>
+                <div className="w-full flex justify-around">
+                  <button
+                    type="reset"
+                    className="w-[100px] bg-green-500 px-2 py-1 text-black font-bold hover:text-white"
+                  >
+                    Reset
+                  </button>
+                  <button
+                    type="submit"
+                    className="w-[100px] bg-green-500 px-2 py-1 text-black font-bold hover:text-white"
+                  >
+                    Calc
+                  </button>
+                </div>
+              </form>
+            </div>
           </div>
           <div>
             {result ? (
-              <div className="msr-result">
-                <h2>Results:</h2>
-                <div className="res-item">
-                  <div className="res-title">T:</div>
-                  <div>{result.T}</div>
-                </div>
-                <div className="res-matrix">
-                  {result.allStates.map((steteMatrix, index) => (
-                    <div className="matrix-item" key={index}>
-                      <div className="res-title">{index}: </div>
-                      <PrintMatrix matrix={steteMatrix} />
+              <div className="mt-5 w-full py-10 flex flex-col items-center bg-slate-500 bg-opacity-20">
+                <h2 className="font-bold text-xl">Result</h2>
+                <div className="">
+                  <div className="flex gap-3 bg-neutral-200 bg-opacity-30 p-4">
+                    <div className="flex gap-2 px-3 border-r-2">
+                      <div className="font-bold">Matrix A:</div>
+                      <div>
+                        {<PrintMatrix matrix={result.A as number[][]} />}
+                      </div>
                     </div>
-                  ))}
+
+                    <div className="flex gap-2 px-3 border-r-2">
+                      <div className="font-bold">Matrix B:</div>
+                      <div>
+                        {<PrintMatrix matrix={result.B as number[][]} />}
+                      </div>
+                    </div>
+                    <div className="flex gap-2 px-3 border-r-2">
+                      <div className="font-bold" title="period">
+                        T:
+                      </div>
+                      <div>{result.T}</div>
+                    </div>
+
+                    <div className="mx-3">
+                      <ShowSteps matrixArr={result.allStates} />
+                    </div>
+                  </div>
                 </div>
               </div>
             ) : null}
